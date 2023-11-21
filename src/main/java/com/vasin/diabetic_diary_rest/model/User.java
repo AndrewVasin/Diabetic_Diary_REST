@@ -19,4 +19,6 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<SugarLevelRecord> sugarLevelRecordList;
+
+    public User() {}
 }

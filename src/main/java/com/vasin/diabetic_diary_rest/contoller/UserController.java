@@ -2,7 +2,6 @@ package com.vasin.diabetic_diary_rest.contoller;
 
 import com.vasin.diabetic_diary_rest.model.User;
 import com.vasin.diabetic_diary_rest.repository.UserRepository;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
