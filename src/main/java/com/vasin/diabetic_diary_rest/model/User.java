@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.lang.NonNull;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.io.Serializable;
 import java.util.List;
@@ -26,16 +26,25 @@ public class User implements Serializable {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "user_name", unique = true)
-    @NonNull
+    @Column(name = "user_name", unique = true, nullable = false)
     private String userName;
 
-    @Column(name = "email", unique = true)
-    @NonNull
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
+
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @OneToMany(mappedBy = "user")
     private List<SugarLevelRecord> sugarLevelRecordList;
 
+    public void setPassword(String password) {
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
     public User() {}
+
 }
